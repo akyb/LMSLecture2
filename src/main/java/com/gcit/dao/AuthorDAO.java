@@ -13,15 +13,15 @@ public class AuthorDAO extends BaseDAO {
 
 	public void insert(Author author) throws SQLException {
 		PreparedStatement prepareStatement = getConnection().prepareStatement("INSERT INTO `library`.`tbl_author` (`authorId`, `authorName`) VALUES (?, ?)");
-		prepareStatement.setInt(1, author.getAuthorId());
-		prepareStatement.setString(2, author.getAuthorName());
+		prepareStatement.setInt(1, author.getAuthorid());
+		prepareStatement.setString(2, author.getAuthorname());
 		prepareStatement.executeUpdate();
 	}
 
 	public void update(Author author) throws SQLException {
 		PreparedStatement prepareStatement = getConnection().prepareStatement("UPDATE `library`.`tbl_author` SET `authorName`=? WHERE `authorId`=?");
-		prepareStatement.setString(1, author.getAuthorName());
-		prepareStatement.setInt(2, author.getAuthorId());
+		prepareStatement.setString(1, author.getAuthorname());
+		prepareStatement.setInt(2, author.getAuthorid());
 		prepareStatement.executeUpdate();
 	}
 
@@ -37,8 +37,8 @@ public class AuthorDAO extends BaseDAO {
 		ResultSet resultSet = prepareStatement.executeQuery();
 		Author author= new Author();
 		while(resultSet.next()){
-			author.setAuthorId(resultSet.getInt("authorId"));
-			author.setAuthorName(resultSet.getString("authorName"));
+			author.setAuthorid(resultSet.getInt("authorId"));
+			author.setAuthorname(resultSet.getString("authorName"));
 		}
 		return author;
 	}
@@ -51,8 +51,8 @@ public class AuthorDAO extends BaseDAO {
 		List<Author> authorList = new ArrayList<Author>();
 		while(resultSet.next()){
 			Author author= new Author();
-			author.setAuthorId(resultSet.getInt("authorId"));
-			author.setAuthorName(resultSet.getString("authorName"));
+			author.setAuthorid(resultSet.getInt("authorId"));
+			author.setAuthorname(resultSet.getString("authorName"));
 			authorList.add(author);
 		}
 		return authorList;
